@@ -25,7 +25,7 @@ app.use(Express.static(path.join(__dirname, 'static')));
 
 app.use(bodyParser.json());
 
-const users = mongoose.model('users', {
+const Users = mongoose.model('Users', {
     username: {
         type: String,
         required: true,
@@ -42,20 +42,19 @@ const users = mongoose.model('users', {
 });
 
 app.post("/login",function(req,res){
-    var username = req.body.username;
+    res.send("loggedIn": true);
     var password = req.body.password;
-    users.findOne({username: username })
+    Users.findOne({username: req.body.username })
         .then(function (result) {
             if (result.password == password) {
                 console.log("Login Authenticated");
+                res.send("loggedIn": true);
             }
             else {
                 console.log("Authentication Failed");
+                res.send("loggedIn": false);
             }
         });
-
-
-    res.send("Do your login");
 });
 
 // universal routing and rendering

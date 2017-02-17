@@ -32,22 +32,26 @@ export default class UserEdit extends React.Component {
     }
 
     render() {
+        if(this.props.loggedIn){
         return (
-        <form onSubmit={this.handleSubmit}>
-                <input placeholder="username" type="text" value={this.state.user.username} onChange={this.handleChange.bind(this, 'username')} />
-                <br/>
-                <input placeholder="password" type="text" value={this.state.user.password} onChange={this.handleChange.bind(this, 'password')} />
-                <br/>
-                <input placeholder="first_name" type="text" value={this.state.user.first_name} onChange={this.handleChange.bind(this, 'first_name')} />
-                <br/>
-                <input placeholder="last_name" type="text" value={this.state.user.last_name} onChange={this.handleChange.bind(this, 'last_name')} />
-                <br/>
-                <input placeholder="avatar" type="text" value={this.state.user.avatar} onChange={this.handleChange.bind(this, 'avatar')} />
-                <br/>
-                <br/>
-            <input type="submit" value="submit" onClick={this.props.update.bind(null,this.state.user)}/>
-            </form>
-        );
+            <form onSubmit={this.handleSubmit}>
+                    <input placeholder="username" type="text" value={this.state.user.username} onChange={this.handleChange.bind(this, 'username')} />
+                    <br/>
+                    <input placeholder="password" type="text" value={this.state.user.password} onChange={this.handleChange.bind(this, 'password')} />
+                    <br/>
+                    <input placeholder="first_name" type="text" value={this.state.user.first_name} onChange={this.handleChange.bind(this, 'first_name')} />
+                    <br/>
+                    <input placeholder="last_name" type="text" value={this.state.user.last_name} onChange={this.handleChange.bind(this, 'last_name')} />
+                    <br/>
+                    <input placeholder="avatar" type="text" value={this.state.user.avatar} onChange={this.handleChange.bind(this, 'avatar')} />
+                    <br/>
+                    <br/>
+                <input type="submit" value="submit" onClick={this.props.update.bind(null,this.state.user)}/>
+                </form>
+            );
+        } else {
+            return (<div>not logged in</div>);
+        }
     }
 
 }
