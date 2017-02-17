@@ -25,9 +25,26 @@ app.use(Express.static(path.join(__dirname, 'static')));
 
 app.use(bodyParser.json());
 
+const users = mongoose.model('users', {
+    username: {
+        type: String,
+        required: true,
+        index: {
+            unique: true
+        },
+        ref: "Username"
+    },
+    password: {
+        type: String,
+        required: true
+    },
+
+});
+
 app.post("/login",function(req,res){
-    password = req.body.password;
-    db.users.findOne({username: username })
+    var username = req.body.username;
+    var password = req.body.password;
+    users.findOne({username: username })
         .then(function (result) {
             if (result.password == password) {
                 console.log("Login Authenticated");
